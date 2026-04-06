@@ -1,0 +1,161 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Excluir Dados — RapTrak" description="Solicite a exclusao dos seus dados pessoais do RapTrak.">
+  <Header />
+
+  <main class="pt-24 pb-16">
+    <div class="max-w-lg mx-auto px-4 sm:px-6">
+      <div class="mb-8">
+        <a href="/" class="text-accent text-sm hover:underline">&larr; Voltar ao inicio</a>
+      </div>
+
+      <div class="glass rounded-2xl p-8 sm:p-10">
+        <div class="text-center mb-8">
+          <h1 class="font-display text-2xl font-bold mb-2">Excluir Dados</h1>
+          <p class="text-text-secondary text-sm">Solicite a exclusao permanente da sua conta.</p>
+        </div>
+
+        <!-- Warning -->
+        <div class="p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-sm mb-6">
+          <strong>Atencao:</strong> Esta acao e irreversivel apos 30 dias. Sua conta sera permanentemente deletada.
+        </div>
+
+        <!-- What gets deleted -->
+        <div class="p-4 rounded-xl bg-accent/5 border border-accent/10 text-sm mb-4">
+          <h3 class="text-accent font-semibold mb-2">O que sera deletado:</h3>
+          <ul class="list-disc list-inside space-y-1 text-text-secondary ml-1">
+            <li>Nome, email, CPF e data de nascimento</li>
+            <li>Foto de perfil e biografia</li>
+            <li>Links de redes sociais</li>
+            <li>Curtidas e interacoes</li>
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/10 text-sm mb-6">
+          <h3 class="text-green-400 font-semibold mb-2">O que sera mantido (anonimizado):</h3>
+          <ul class="list-disc list-inside space-y-1 text-text-secondary ml-1">
+            <li>Trofeus conquistados (como "Usuario Deletado")</li>
+            <li>Historico de batalhas publicas</li>
+          </ul>
+        </div>
+
+        <!-- Form -->
+        <form id="deletion-form" class="space-y-5">
+          <div>
+            <label for="del-email" class="block text-sm font-medium text-text-secondary mb-1.5">Email da sua conta</label>
+            <input
+              type="email"
+              id="del-email"
+              name="email"
+              required
+              placeholder="seu@email.com"
+              class="w-full px-4 py-3 rounded-xl bg-bg-primary border border-border text-text-primary placeholder-text-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="del-reason" class="block text-sm font-medium text-text-secondary mb-1.5">Motivo da exclusao <span class="text-text-muted">(opcional)</span></label>
+            <textarea
+              id="del-reason"
+              name="reason"
+              rows="3"
+              placeholder="Nos ajude a melhorar..."
+              class="w-full px-4 py-3 rounded-xl bg-bg-primary border border-border text-text-primary placeholder-text-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" id="del-confirm" required class="mt-1 accent-accent" />
+            <span class="text-text-secondary text-xs leading-relaxed">
+              Entendo que minha conta sera deletada permanentemente apos 30 dias e que esta acao nao pode ser desfeita.
+            </span>
+          </label>
+
+          <div class="flex gap-3 pt-2">
+            <a href="/" class="flex-1 py-3 rounded-xl bg-bg-card text-text-primary text-sm font-medium text-center hover:bg-bg-card-hover transition-colors">
+              Cancelar
+            </a>
+            <button
+              type="submit"
+              id="del-submit"
+              class="flex-1 py-3 rounded-xl bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Solicitar Exclusao
+            </button>
+          </div>
+        </form>
+
+        <!-- Loading -->
+        <div id="del-loading" class="hidden text-center py-8">
+          <div class="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <p class="text-text-secondary text-sm">Processando...</p>
+        </div>
+
+        <!-- Success -->
+        <div id="del-success" class="hidden text-center py-8">
+          <div class="w-16 h-16 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-2">Email enviado!</h3>
+          <p class="text-text-secondary text-sm">
+            Confira seu email para confirmar a exclusao. O link expira em 7 dias.
+          </p>
+        </div>
+
+        <!-- Error -->
+        <div id="del-error" class="hidden mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center"></div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const API_URL = 'https://raptrak-production.up.railway.app';
+  const form = document.getElementById('deletion-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('del-submit') as HTMLButtonElement;
+  const loadingDiv = document.getElementById('del-loading')!;
+  const successDiv = document.getElementById('del-success')!;
+  const errorDiv = document.getElementById('del-error')!;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    form.classList.add('hidden');
+    loadingDiv.classList.remove('hidden');
+    errorDiv.classList.add('hidden');
+
+    const email = (document.getElementById('del-email') as HTMLInputElement).value;
+    const reason = (document.getElementById('del-reason') as HTMLTextAreaElement).value;
+
+    try {
+      const res = await fetch(`${API_URL}/data-deletion/request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, reason: reason || undefined }),
+      });
+
+      loadingDiv.classList.add('hidden');
+
+      if (res.ok) {
+        successDiv.classList.remove('hidden');
+      } else {
+        const data = await res.json();
+        form.classList.remove('hidden');
+        errorDiv.textContent = data.message || 'Erro ao processar. Tente novamente.';
+        errorDiv.classList.remove('hidden');
+      }
+    } catch {
+      loadingDiv.classList.add('hidden');
+      form.classList.remove('hidden');
+      errorDiv.textContent = 'Erro de conexao. Tente novamente.';
+      errorDiv.classList.remove('hidden');
+    }
+  });
+</script>
