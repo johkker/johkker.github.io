@@ -1,127 +1,207 @@
 ---
 import LegalShell from '../components/LegalShell.astro';
+
+// Controlador (LGPD, art. 5º, VI). Preencher antes de publicar.
+const CONTROLADOR = { razaoSocial: '[RAZÃO SOCIAL]', cnpj: '[CNPJ]' };
+
+const bases = [
+  ['Criar e manter sua conta; mostrar batalhas, perfis, resultados e rankings', 'Execução de contrato (art. 7º, V)'],
+  ['Mostrar batalhas perto de você com a localização do aparelho', 'Consentimento (art. 7º, I), dado na permissão do sistema'],
+  ['Enviar notificações push', 'Consentimento (art. 7º, I), controlado no aparelho e nas preferências do app'],
+  ['Avisos de apoiadores para a sua cidade', 'Legítimo interesse (art. 7º, IX); desligue quando quiser em Configurações › Notificações'],
+  ['Medir o alcance dos apoiadores (impressões e cliques)', 'Legítimo interesse (art. 7º, IX): manter o app gratuito para a cena'],
+  ['E-mails de verificação, exclusão de conta e convites', 'Execução de contrato (art. 7º, V)'],
+  ['Segurança, prevenção de fraude e registro dos pedidos de exclusão', 'Legítimo interesse e cumprimento de obrigação legal (art. 7º, II e IX)'],
+  ['Cobrança de apoiadores via Pix', 'Execução de contrato (art. 7º, V)'],
+];
+
+const operadores = [
+  ['Railway', 'Servidores da API, banco de dados e armazenamento de arquivos'],
+  ['Vercel', 'Hospedagem do app na web (app.raptrak.me)'],
+  ['GitHub Pages', 'Hospedagem deste site (raptrak.me)'],
+  ['Cloudflare', 'DNS e rede'],
+  ['Google', 'Login com Google, mapas, fontes deste site e distribuição pela Google Play'],
+  ['Expo', 'Entrega das notificações push'],
+  ['Brevo', 'Envio de e-mails (verificação, exclusão de conta, convites)'],
+  ['Photon (komoot)', 'Sugestão de endereços ao cadastrar uma batalha'],
+  ['Mercado Pago', 'Geração e confirmação de Pix, só para apoiadores'],
+];
 ---
 
 <LegalShell
   title="Política de Privacidade"
   pageTitle="Política de Privacidade · RapTrak"
-  description="Política de Privacidade do RapTrak. Saiba como coletamos, usamos e protegemos seus dados."
-  meta={['Última atualização: 13 de novembro de 2025']}
+  description="Como o RapTrak coleta, usa, compartilha e protege seus dados pessoais, de acordo com a LGPD."
+  meta={['Última atualização: 23 de setembro de 2026']}
 >
   <section>
-    <h2>1. Introdução</h2>
-    <p>O RapTrak é um aplicativo dedicado a conectar a comunidade de batalhas de rap no Brasil. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais.</p>
-    <p>Ao usar nosso aplicativo, você concorda com os termos desta política.</p>
+    <h2>Resumo</h2>
+    <ul>
+      <li>O RapTrak é grátis e <strong>não vende seus dados</strong>.</li>
+      <li>Não usamos anúncios nem ferramentas de rastreamento ou analytics de terceiros.</li>
+      <li>Apoiadores veem só números agregados por região, nunca quem você é.</li>
+      <li>O app não pede CPF, data de nascimento nem telefone.</li>
+      <li>Você pode excluir sua conta quando quiser em <a href="/data-deletion">raptrak.me/data-deletion</a>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>1. Quem somos</h2>
+    <p>O RapTrak (app, site e portal de apoiadores) é mantido por <strong>{CONTROLADOR.razaoSocial}</strong>, CNPJ {CONTROLADOR.cnpj}, controlador dos seus dados pessoais nos termos da Lei Geral de Proteção de Dados (Lei 13.709/2018, LGPD).</p>
+    <p>Encarregado pelo tratamento de dados: <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a>.</p>
   </section>
 
   <section>
     <h2>2. Dados que coletamos</h2>
 
-    <h3>2.1 Dados de cadastro</h3>
-    <p>Quando você cria uma conta, coletamos:</p>
+    <h3>2.1 Sua conta</h3>
     <ul>
-      <li><strong>Nome completo</strong></li>
-      <li><strong>E-mail</strong></li>
-      <li><strong>Senha</strong> (armazenada com criptografia bcrypt)</li>
-      <li><strong>CPF</strong> (para verificação de identidade)</li>
-      <li><strong>Data de nascimento</strong> (para verificar a idade mínima de 14 anos)</li>
+      <li><strong>Nome</strong> e <strong>e-mail</strong></li>
+      <li><strong>Senha</strong>, guardada só como hash criptográfico (bcrypt)</li>
       <li><strong>Nome artístico</strong> (opcional)</li>
-      <li><strong>Avatar/foto de perfil</strong> (opcional)</li>
-      <li><strong>Tipos de usuário</strong> (comum, rapper, administrador de local, beatmaker)</li>
-      <li><strong>Cidade</strong> (opcional)</li>
-      <li><strong>Biografia</strong> (opcional)</li>
-      <li><strong>Redes sociais</strong> (opcional)</li>
+      <li><strong>Tipo de perfil</strong>: MC ou quem acompanha a cena</li>
+      <li><strong>Cidade</strong>: o município que você escolhe no primeiro acesso, com o estado e a região correspondentes</li>
+      <li><strong>Foto de perfil</strong> e <strong>redes sociais</strong> (opcionais)</li>
     </ul>
 
     <h3>2.2 Login com Google</h3>
-    <p>Se você optar por fazer login com sua conta Google, coletamos:</p>
+    <p>Se você entrar com o Google, recebemos seu nome, e-mail, foto e o identificador da sua conta Google. Nunca recebemos sua senha do Google.</p>
+
+    <h3>2.3 O que você faz no app</h3>
     <ul>
-      <li><strong>E-mail</strong> da sua conta Google</li>
-      <li><strong>Nome</strong> cadastrado no Google</li>
-      <li><strong>Foto de perfil</strong> do Google</li>
+      <li>Batalhas que você cadastra ou administra, edições e resultados publicados</li>
+      <li>Fotos que você envia</li>
+      <li>Curtidas, quem você segue e quem segue você</li>
+      <li>Comentários e confirmações de presença em edições</li>
+      <li>Pedidos para assumir a página de uma batalha, com a justificativa e os links enviados</li>
+      <li>Vitórias, troféus e participações registrados nos resultados</li>
     </ul>
-    <p><strong>Importante:</strong> quando você usa o Google Sign-In, suas credenciais do Google nunca são compartilhadas conosco. Recebemos apenas um token de autenticação validado pelo Google.</p>
 
-    <h3>2.3 Dados de localização</h3>
-    <p>Coletamos dados de localização <strong>apenas quando você usa recursos específicos</strong>: busca de batalhas próximas, visualização no mapa e criação de endereços. A localização não é armazenada permanentemente.</p>
+    <h3>2.4 Dados registrados por organizadores</h3>
+    <p>Quem organiza uma batalha publica os resultados das edições, e seu nome ou nome artístico pode aparecer neles. Organizadores também podem registrar MCs que ainda não têm conta, com nome artístico, cidade e redes sociais. Se for o seu caso e você quiser a remoção, escreva para <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a>.</p>
 
-    <h3>2.4 Dados de atividade</h3>
+    <h3>2.5 Localização</h3>
+    <p>Com a sua permissão, usamos a localização do aparelho para mostrar batalhas perto de você e para ajudar a preencher o endereço ao cadastrar uma batalha. As coordenadas são enviadas no momento da busca e <strong>não são guardadas no seu perfil</strong>. O endereço que você digita ao cadastrar uma batalha é enviado ao serviço Photon para sugerir o local.</p>
+
+    <h3>2.6 Notificações</h3>
+    <p>Se você permitir notificações, guardamos o token de push do seu aparelho e suas preferências (batalhas, social, campeonatos e apoiadores). As notificações também ficam na caixa de entrada do app.</p>
+
+    <h3>2.7 Métricas de apoiadores</h3>
+    <p>Quando o conteúdo de um apoiador aparece para você (por exemplo, na abertura do app, no mural de apoiadores ou num troféu apresentado) ou quando você toca nele, registramos esse evento com: a sua conta (se você estiver logado), a cidade, o estado e a região do seu perfil, e um identificador aleatório da sessão, que muda a cada vez que o app abre. <strong>Não registramos seu IP nem o identificador do aparelho</strong> nesses eventos. Os apoiadores veem apenas totais agregados, como impressões, cliques e pessoas alcançadas por cidade ou região.</p>
+
+    <h3>2.8 Segurança e suporte</h3>
+    <p>Nos pedidos de exclusão de conta, nos pedidos de acesso ao beta e nos registros de auditoria, guardamos o endereço IP e o navegador usados. Mensagens que você envia por e-mail (feedback e denúncias) ficam com a nossa equipe.</p>
+
+    <h3>2.9 No seu aparelho</h3>
+    <p>O app guarda no aparelho (ou no armazenamento local do navegador) o token da sua sessão e os dados básicos da sua conta, para você não precisar entrar toda vez. Não usamos cookies de rastreamento.</p>
+
+    <h3>2.10 Apoiadores</h3>
+    <p>Para empresas que apoiam a cena, guardamos nome, logo, site, redes sociais e e-mail de contato, as contas convidadas para o portal, os pedidos de plano e as faturas Pix. Para gerar o Pix, enviamos ao Mercado Pago o valor, a descrição e o e-mail de contato do apoiador.</p>
+  </section>
+
+  <section>
+    <h2>3. Para que usamos e com qual base legal</h2>
+    <div class="legal-table">
+      <table>
+        <thead><tr><th scope="col">Finalidade</th><th scope="col">Base legal (LGPD)</th></tr></thead>
+        <tbody>
+          {bases.map(([f, b]) => <tr><td>{f}</td><td>{b}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+    <p>Quando a base é o consentimento, você pode retirá-lo a qualquer momento nas permissões do aparelho ou nas preferências do app. Quando é o legítimo interesse, você pode se opor escrevendo para <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a>.</p>
+  </section>
+
+  <section>
+    <h2>4. O que fica visível para outras pessoas</h2>
     <ul>
-      <li>Batalhas que você cria ou descobre</li>
-      <li>Troféus que você recebe</li>
-      <li>Solicitações de propriedade de batalhas</li>
-      <li>Curtidas em batalhas</li>
-      <li>Estatísticas de participação</li>
+      <li><strong>Para qualquer pessoa, sem login</strong>: nos rankings, o nome, o nome artístico, a foto e a cidade de quem aparece.</li>
+      <li><strong>Para quem tem conta</strong>: seu perfil (nome, nome artístico, foto, bio, cidade, tipo de perfil, redes sociais, estatísticas, troféus, vitórias e número de seguidores), as listas de seguidores, sua presença em edições, seus comentários e os resultados em que você aparece.</li>
+      <li><strong>Nunca exibimos</strong> seu e-mail nem sua senha.</li>
     </ul>
+    <p>Seu nome aparece junto do nome artístico, e o endereço do seu perfil é criado a partir do nome artístico (ou do nome, se você não tiver um). Se não quiser mostrar seu nome completo, use só o primeiro nome ou um apelido no campo Nome, em Editar perfil.</p>
   </section>
 
   <section>
-    <h2>3. Como usamos seus dados</h2>
+    <h2>5. Com quem compartilhamos</h2>
+    <p>Não vendemos nem alugamos seus dados. Compartilhamos apenas com os operadores que fazem o RapTrak funcionar, e somente o necessário para cada serviço:</p>
+    <div class="legal-table">
+      <table>
+        <thead><tr><th scope="col">Operador</th><th scope="col">Para quê</th></tr></thead>
+        <tbody>
+          {operadores.map(([o, u]) => <tr><td><strong>{o}</strong></td><td>{u}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+    <p>Também podemos compartilhar dados com autoridades quando a lei exigir ou por ordem judicial.</p>
+  </section>
+
+  <section>
+    <h2>6. Transferência internacional</h2>
+    <p>Vários desses operadores ficam fora do Brasil, e seus dados podem ser processados em servidores no exterior. Essas transferências seguem o art. 33 da LGPD e são feitas com fornecedores que oferecem garantias contratuais de proteção de dados.</p>
+  </section>
+
+  <section>
+    <h2>7. Por quanto tempo guardamos</h2>
     <ul>
-      <li>Autenticar sua identidade e gerenciar sua conta</li>
-      <li>Exibir batalhas próximas à sua localização</li>
-      <li>Conectar você com outras batalhas e usuários</li>
-      <li>Atribuir troféus e reconhecimentos</li>
-      <li>Melhorar a segurança e prevenir fraudes</li>
-      <li>Analisar e melhorar nossos serviços</li>
-      <li>Cumprir obrigações legais</li>
+      <li><strong>Conta e atividade</strong>: enquanto sua conta existir.</li>
+      <li><strong>Depois da exclusão</strong>: veja a seção 8.</li>
+      <li><strong>Métricas de apoiadores</strong>: os eventos são mantidos para os relatórios. Quando a conta é excluída, eles perdem o vínculo com você e ficam só os números por região.</li>
+      <li><strong>Registros de segurança e de pedidos de exclusão</strong>: pelo tempo necessário para proteger a plataforma e comprovar que o seu pedido foi atendido.</li>
     </ul>
   </section>
 
   <section>
-    <h2>4. Compartilhamento de dados</h2>
-    <h3>Informações públicas</h3>
-    <p>Nome artístico, avatar, biografia, cidade, troféus e estatísticas são visíveis para outros usuários.</p>
-    <h3>Informações privadas</h3>
-    <p>Nunca compartilhamos publicamente: CPF, data de nascimento, e-mail, senha ou localização exata.</p>
-    <h3>Serviços de terceiros</h3>
-    <p>Utilizamos Google Sign-In, Google Maps API e provedores de hospedagem. <strong>Não vendemos nem alugamos seus dados pessoais para terceiros.</strong></p>
-  </section>
-
-  <section>
-    <h2>5. Segurança dos dados</h2>
+    <h2>8. Exclusão de conta</h2>
+    <p>Peça em <a href="/data-deletion">raptrak.me/data-deletion</a> (no app, em Configurações, o atalho abre essa página). Você recebe um e-mail para confirmar, e o link vale por 7 dias.</p>
     <ul>
-      <li>Senhas criptografadas com bcrypt</li>
-      <li>Tokens JWT com expiração de 24 horas</li>
-      <li>Conexões HTTPS</li>
-      <li>Banco de dados PostgreSQL com controles de acesso</li>
-      <li>Validação de dados em todas as entradas</li>
+      <li><strong>Ao confirmar</strong>: a conta é desativada na hora. Você sai dos rankings, o perfil deixa de aparecer e o login é bloqueado.</li>
+      <li><strong>Por 30 dias</strong>: dá para desistir. Como o login fica bloqueado, escreva para <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a>.</li>
+      <li><strong>Depois de 30 dias</strong>: apagamos nome, e-mail, senha, vínculo com o Google, endereço do perfil, foto, bio, redes sociais e cidade. Também apagamos seguidores, curtidas, presenças, notificações, tokens de push e as imagens que você enviou. As métricas de apoiadores deixam de ter vínculo com você.</li>
+      <li><strong>O que continua, anonimizado</strong>: resultados, vitórias, troféus e comentários em batalhas, que fazem parte do histórico público da cena e passam a aparecer como “Usuário deletado”. Guardamos também o registro do pedido de exclusão (e-mail, datas e IP), como comprovação.</li>
     </ul>
   </section>
 
   <section>
-    <h2>6. Seus direitos (LGPD)</h2>
-    <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a:</p>
+    <h2>9. Seus direitos</h2>
+    <p>Pela LGPD (art. 18), você pode:</p>
     <ul>
-      <li>Confirmar a existência de tratamento dos seus dados</li>
-      <li>Acessar seus dados pessoais</li>
-      <li>Corrigir dados incompletos ou desatualizados</li>
-      <li>Solicitar anonimização, bloqueio ou eliminação de dados</li>
-      <li>Solicitar a portabilidade dos seus dados</li>
-      <li>Revogar o consentimento a qualquer momento</li>
-      <li>Excluir sua conta e todos os dados associados</li>
+      <li>Confirmar se tratamos seus dados e acessá-los</li>
+      <li>Corrigir dados incompletos, inexatos ou desatualizados (a maioria direto no app, em Editar perfil)</li>
+      <li>Pedir anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade</li>
+      <li>Pedir a portabilidade dos seus dados</li>
+      <li>Saber com quem compartilhamos seus dados</li>
+      <li>Retirar o consentimento e se opor a tratamentos baseados em legítimo interesse</li>
+      <li>Excluir sua conta</li>
     </ul>
-    <p>Para exercer seus direitos: <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a></p>
+    <p>Para exercer qualquer direito, escreva para <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a>. Respondemos em até 15 dias. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (<a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">ANPD</a>).</p>
   </section>
 
   <section>
-    <h2>7. Exclusão de conta</h2>
-    <p>Você pode excluir sua conta a qualquer momento pelo app ou pela <a href="/data-deletion">página de exclusão de dados</a>. Seus dados pessoais são removidos permanentemente após 30 dias.</p>
+    <h2>10. Crianças e adolescentes</h2>
+    <p>O RapTrak é destinado a pessoas a partir de 14 anos. Se identificarmos uma conta de alguém com menos de 14 anos, ela é excluída. Para adolescentes, tratamos apenas os dados necessários para usar o app, sempre no seu melhor interesse (art. 14 da LGPD). Veja também a nossa <a href="/child-safety">Política de Segurança Infantil</a>.</p>
   </section>
 
   <section>
-    <h2>8. Menores de idade</h2>
-    <p>O RapTrak exige idade mínima de <strong>14 anos</strong>. Contas de menores serão desativadas e os dados, excluídos.</p>
+    <h2>11. Segurança</h2>
+    <ul>
+      <li>Senhas guardadas só como hash (bcrypt)</li>
+      <li>Conexões por HTTPS</li>
+      <li>Sessões que expiram em 24 horas</li>
+      <li>Links de verificação e de exclusão com token aleatório e prazo de validade</li>
+      <li>Acesso ao banco de dados restrito à equipe</li>
+    </ul>
+    <p>Se acontecer um incidente de segurança que possa causar risco ou dano relevante a você, avisaremos você e a ANPD, como manda o art. 48 da LGPD.</p>
   </section>
 
   <section>
-    <h2>9. Transferência internacional</h2>
-    <p>Seus dados podem ser armazenados em servidores fora do Brasil, em conformidade com a LGPD (Art. 33), com garantias contratuais e certificações de segurança.</p>
+    <h2>12. Mudanças nesta política</h2>
+    <p>Quando esta política mudar, atualizamos a data no topo. Se a mudança for relevante, avisamos também pelo app ou por e-mail.</p>
   </section>
 
   <section>
-    <h2>10. Contato</h2>
-    <p>Para questões sobre privacidade: <a href="mailto:johkker@gmail.com">johkker@gmail.com</a></p>
-    <p>Autoridade Nacional de Proteção de Dados (ANPD): <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">gov.br/anpd</a></p>
+    <h2>13. Contato</h2>
+    <p>Privacidade e direitos do titular: <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a></p>
+    <p>Segurança e denúncias: <a href="mailto:seguranca@raptrak.me">seguranca@raptrak.me</a></p>
   </section>
 </LegalShell>

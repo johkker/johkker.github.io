@@ -1,0 +1,25 @@
+---
+// Encaminha links de e-mail que o backend monta em raptrak.me (FRONTEND_URL) para o app certo,
+// preservando a query (?token=…). Página estática: redirect por JS, com link manual de fallback.
+import Layout from '../layouts/Layout.astro';
+import Logo from './Logo.astro';
+interface Props { to: string; title: string; label: string }
+const { to, title, label } = Astro.props;
+---
+<Layout title={`${title} · RapTrak`}>
+  <meta name="robots" content="noindex" slot="head" />
+  <main id="conteudo" class="wrap grid min-h-screen place-content-center py-20">
+    <Logo size={28} />
+    <h1 class="display-md mt-10">{title}</h1>
+    <p class="mt-4 text-text-2" role="status">Te levando pro lugar certo…</p>
+    <a id="fwd" href={to} data-to={to} class="btn btn-primary mt-8 justify-self-start">{label}</a>
+  </main>
+  <script>
+    const a = document.getElementById('fwd') as HTMLAnchorElement | null;
+    if (a?.dataset.to) {
+      const url = a.dataset.to + window.location.search + window.location.hash;
+      a.href = url;
+      window.location.replace(url);
+    }
+  </script>
+</Layout>

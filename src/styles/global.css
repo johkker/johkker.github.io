@@ -119,6 +119,13 @@
   .legal li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.55rem; height: 2px; background: var(--color-accent); }
   .legal strong { color: var(--color-text); font-weight: 600; }
   .legal a { color: var(--color-accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .legal-table { margin-top: 1rem; overflow-x: auto; border: 1px solid var(--color-hairline); border-radius: var(--radius-md); }
+  .legal-table table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .legal-table th { text-align: left; font-weight: 600; color: var(--color-text); background: var(--color-surface); }
+  .legal-table th, .legal-table td { padding: 0.75rem 1rem; vertical-align: top; border-top: 1px solid var(--color-hairline); }
+  .legal-table thead th { border-top: 0; }
+  .legal-table td:first-child { width: 55%; }
+  .legal-table + p { margin-top: 1rem; }
 }
 
 /* Entrada da primeira dobra: máscara nas linhas do título, sem esconder nada se a animação não rodar. */

@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="Página não encontrada · RapTrak">
+  <Header />
+  <main id="conteudo" class="wrap py-24 lg:py-32">
+    <p class="mono text-muted">404</p>
+    <h1 class="display-xl mt-4 max-w-4xl">Essa roda não rolou por aqui.</h1>
+    <p class="lede mt-6">A página que você procurou não existe ou mudou de lugar.</p>
+    <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+      <a href="/" class="btn btn-primary">Voltar ao início</a>
+      <a href="https://app.raptrak.me" class="btn btn-ghost">Abrir o app</a>
+    </div>
+  </main>
+  <Footer />
+</Layout>
