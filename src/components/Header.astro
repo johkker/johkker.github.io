@@ -20,8 +20,9 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       {navLinks.map((link) => (
         <a
           href={link.href}
+          data-nav
           aria-current={path === link.href ? 'page' : undefined}
-          class="rounded-md px-3 py-2 text-[0.95rem] font-medium text-text-2 transition-colors hover:text-text aria-[current=page]:text-text aria-[current=page]:underline aria-[current=page]:decoration-accent aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
+          class="rounded-md px-3 py-2 text-[0.95rem] font-medium text-text-2 transition-colors hover:text-text [&[aria-current]]:text-text [&[aria-current]]:underline [&[aria-current]]:decoration-accent [&[aria-current]]:decoration-2 [&[aria-current]]:underline-offset-8"
         >
           {link.label}
         </a>
@@ -67,4 +68,28 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   };
   btn?.addEventListener('click', () => setOpen(menu?.classList.contains('hidden') ?? false));
   menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  // Na home, "Como funciona" e "FAQ" são âncoras da mesma página: o destaque segue a seção
+  // em que a leitura está; fora delas, fica em "O app".
+  if (location.pathname === '/') {
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-nav]')];
+    const home = links.find((a) => a.getAttribute('href') === '/');
+    const sections = links
+      .filter((a) => a.pathname === '/' && a.hash)
+      .map((a) => ({ a, el: document.querySelector<HTMLElement>(a.hash) }))
+      .filter((s): s is { a: HTMLAnchorElement; el: HTMLElement } => !!s.el);
+    let current: HTMLAnchorElement | undefined;
+    const update = () => {
+      const y = window.scrollY + window.innerHeight * 0.35;
+      const hit = sections.find(({ el }) => el.offsetTop <= y && y < el.offsetTop + el.offsetHeight);
+      const next = hit?.a ?? home;
+      if (next === current) return;
+      current = next;
+      links.forEach((l) => l.removeAttribute('aria-current'));
+      next?.setAttribute('aria-current', hit ? 'location' : 'page');
+    };
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
 </script>
