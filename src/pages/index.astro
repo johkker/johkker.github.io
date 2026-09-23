@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Phone from '../components/Phone.astro';
 
-const PLAY = 'https://play.google.com/apps/testing/com.raptrak.app';
+const BETA = '/beta';
 const APP = 'https://app.raptrak.me';
 
 const publicos = [
@@ -25,7 +25,7 @@ const passos = [
 const faqs = [
   { q: 'O que é o RapTrak?', a: 'A rede social da cena de batalha de rima: pra achar batalha, acompanhar edições e resultados, montar perfil de MC, colecionar troféus e dar ferramenta pra quem organiza.' },
   { q: 'Precisa pagar alguma coisa?', a: 'Não. O RapTrak é grátis pra fã, MC e organizador. Todas as ferramentas de gestão de batalha também são gratuitas.' },
-  { q: 'Como uso no celular?', a: 'No Android, entre no beta pela Google Play. Em qualquer celular, inclusive iPhone, dá pra usar tudo pelo navegador em app.raptrak.me.' },
+  { q: 'Como uso no celular?', a: 'No Android, siga os dois passos em raptrak.me/beta: entre no grupo do beta e ative o teste na Google Play. Em qualquer celular, inclusive iPhone, dá pra usar tudo pelo navegador em app.raptrak.me.' },
   { q: 'E o app pra iPhone?', a: 'Está a caminho. Enquanto isso, a versão web funciona no Safari com as mesmas funções.' },
   { q: 'Tem campeonato com chaveamento?', a: 'Ainda não. É a próxima grande funcionalidade: eliminação simples, dupla e por pontos, com árvore pra acompanhar. Hoje você já registra edições, resultados e troféus.' },
   { q: 'Como cadastro minha batalha?', a: 'Crie sua conta, toque em Criar na aba Batalhas e siga os 4 passos. Depois da aprovação, a batalha aparece no mapa pra todo mundo.' },
@@ -56,7 +56,7 @@ const trofeus = ['Campeão', 'Melhor flow', 'Melhor punchline', 'Favorito do pú
           <p class="lede rise mt-8">Ache batalha de rima perto de você, acompanhe cada edição, monte seu perfil de MC e colecione troféus. Grátis pra toda a cena.</p>
           <div class="rise mt-10 flex flex-col gap-3 sm:flex-row">
             <a href={APP} class="btn btn-primary">Abrir o app</a>
-            <a href={PLAY} target="_blank" rel="noopener" class="btn btn-ghost">
+            <a href={BETA} class="btn btn-ghost">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2a1 1 0 0 1-.6-.9V2.7a1 1 0 0 1 .6-.9Zm10.9 10.9 2.3 2.3-10.9 6.3 8.6-8.6Zm3.2-3.2 2.3 2.3a1 1 0 0 1 0 1.4l-2.3 2.3-2.3-2.3 2.3-2.3v-1.4ZM5.9 2.7 16.8 9l-2.3 2.3-8.6-8.6Z"/></svg>
               Android (beta)
             </a>
@@ -169,8 +169,8 @@ const trofeus = ['Campeão', 'Melhor flow', 'Melhor punchline', 'Favorito do pú
             </div>
             <div class="grid gap-3 py-6 sm:grid-cols-[10rem_1fr_auto] sm:items-center">
               <dt class="text-2xl font-display font-extrabold uppercase">Android</dt>
-              <dd class="text-text-2">App nativo em beta na Google Play. Pode ter bug; o feedback vai direto pra gente pelo app.</dd>
-              <dd><a href={PLAY} target="_blank" rel="noopener" class="btn btn-ghost w-full sm:w-auto">Entrar no beta</a></dd>
+              <dd class="text-text-2">App nativo em teste fechado na Google Play: entre no grupo do beta e ative o teste. Pode ter bug; o feedback vai direto pra gente pelo app.</dd>
+              <dd><a href={BETA} class="btn btn-ghost w-full sm:w-auto">Entrar no beta</a></dd>
             </div>
             <div class="grid gap-3 py-6 sm:grid-cols-[10rem_1fr_auto] sm:items-center">
               <dt class="text-2xl font-display font-extrabold uppercase">iPhone</dt>

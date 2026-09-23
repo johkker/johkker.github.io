@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Phone from '../components/Phone.astro';
+
+const GROUP = 'https://groups.google.com/g/raptrak-beta';
+const PLAY = 'https://play.google.com/apps/testing/com.raptrak.app';
+
+const duvidas = [
+  { q: 'Apareceu “Aplicativo não disponível”', a: 'Você ainda não está no grupo, ou está usando no Play uma conta Google diferente da que entrou no grupo. Confira o passo 1 com a mesma conta do celular. Depois de entrar, pode levar alguns minutos para o link liberar.' },
+  { q: 'Já ativei e não acho o app na Play Store', a: 'Abra o link do passo 2 de novo e toque em baixar, ou procure “RapTrak” na Play Store. A instalação pelo beta pode demorar alguns minutos para aparecer.' },
+  { q: 'Tenho iPhone', a: 'O app para iOS está a caminho. Até lá, dá para usar tudo pelo navegador em app.raptrak.me.' },
+  { q: 'Como saio do beta?', a: 'Abra o link do passo 2 e toque em “Sair do programa”. Se quiser, saia também do grupo.' },
+];
+---
+
+<Layout title="Beta no Android · RapTrak" description="Como entrar no beta do RapTrak no Android: entre no grupo e ative o teste na Google Play.">
+  <Header />
+
+  <main id="conteudo">
+    <section class="overflow-hidden">
+      <div class="wrap grid items-center gap-14 pt-14 pb-20 lg:grid-cols-[1.2fr_0.8fr] lg:pt-20 lg:pb-28">
+        <div>
+          <h1 class="display-xl">
+            <span class="reveal-line"><span>Beta no</span></span>
+            <span class="reveal-line"><span><span class="underline decoration-accent decoration-[0.09em] underline-offset-[0.12em]">Android</span></span></span>
+          </h1>
+          <p class="lede rise mt-8">O app nativo está em teste fechado na Google Play. Leva dois passos e um minuto. Use a mesma conta Google que está no seu celular.</p>
+
+          <ol class="rise mt-12 max-w-xl">
+            <li class="flex gap-6 border-t border-hairline py-8">
+              <span class="w-8 shrink-0 font-display text-5xl font-extrabold leading-none text-dim" aria-hidden="true">1</span>
+              <div>
+                <h2 class="text-3xl">Entre no grupo do beta</h2>
+                <p class="mt-2 text-text-2">No Google Groups, toque em <strong class="font-semibold text-text">Participar do grupo</strong>. O grupo serve só como a lista de quem pode testar.</p>
+                <a href={GROUP} target="_blank" rel="noopener" class="btn btn-primary mt-5">Entrar no grupo</a>
+              </div>
+            </li>
+            <li class="flex gap-6 border-t border-hairline py-8">
+              <span class="w-8 shrink-0 font-display text-5xl font-extrabold leading-none text-dim" aria-hidden="true">2</span>
+              <div>
+                <h2 class="text-3xl">Ative o teste na Play</h2>
+                <p class="mt-2 text-text-2">Toque em <strong class="font-semibold text-text">Tornar-se testador</strong> e depois baixe o RapTrak pela Play Store.</p>
+                <a href={PLAY} target="_blank" rel="noopener" class="btn btn-ghost mt-5">Ativar na Google Play</a>
+              </div>
+            </li>
+          </ol>
+          <p class="text-text-2">Achou bug? Conta pra gente pelo próprio app, em Configurações.</p>
+        </div>
+
+        <Phone src="/img/app-descobrir.jpeg" alt="Aba Batalhas do app no Android, com batalhas de Curitiba e região" class="rise-late mx-auto w-full max-w-[17rem] rotate-2" />
+      </div>
+    </section>
+
+    <section class="border-t border-hairline bg-surface">
+      <div class="wrap grid gap-10 py-20 lg:grid-cols-[0.8fr_1.2fr] lg:py-24">
+        <h2 class="display-lg">Deu ruim?</h2>
+        <div class="divide-y divide-hairline border-y border-hairline">
+          {duvidas.map((d) => (
+            <details class="group">
+              <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+                {d.q}
+                <svg class="shrink-0 text-muted transition-transform duration-200 group-open:rotate-45" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </summary>
+              <p class="max-w-[62ch] pb-6 text-text-2">{d.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
