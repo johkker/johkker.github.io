@@ -4,67 +4,43 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 ---
 
-<Layout title="Confirmar Exclusao — RapTrak" description="Confirme a exclusao dos seus dados no RapTrak.">
+<Layout title="Confirmar exclusão · RapTrak" description="Confirme a exclusão dos seus dados no RapTrak.">
   <Header />
 
-  <main class="pt-24 pb-16">
-    <div class="max-w-lg mx-auto px-4 sm:px-6">
-      <div class="glass rounded-2xl p-8 sm:p-10 text-center">
-        <h1 class="font-display text-2xl font-bold mb-6">Exclusao de Dados</h1>
+  <main id="conteudo" class="wrap pt-14 pb-24 lg:pt-20">
+    <div class="mx-auto max-w-xl">
+      <h1 class="display-lg">Exclusão de dados</h1>
 
-        <!-- Loading -->
-        <div id="verify-loading" class="py-8">
-          <div class="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-          <p class="text-text-secondary text-sm">Processando sua confirmacao...</p>
+      <div id="verify-loading" class="mt-10" role="status">
+        <div class="mb-4 size-8 animate-spin rounded-full border-2 border-accent border-t-transparent motion-reduce:animate-none"></div>
+        <p class="text-text-2">Processando sua confirmação…</p>
+      </div>
+
+      <div id="verify-success" class="mt-10 hidden">
+        <h2 class="text-3xl">Exclusão confirmada</h2>
+        <dl class="mt-6 divide-y divide-hairline border-y border-hairline">
+          <div class="py-4"><dt class="font-semibold">Prazo pra desistir</dt><dd class="mt-1 text-text-2">Você tem até <span id="grace-date" class="font-semibold text-text"></span> pra cancelar.</dd></div>
+          <div class="py-4"><dt class="font-semibold">Exclusão permanente</dt><dd class="mt-1 text-text-2">Depois de 30 dias, seus dados são apagados.</dd></div>
+          <div class="py-4"><dt class="font-semibold">O que fica</dt><dd class="mt-1 text-text-2">O histórico de batalhas continua, como “Usuário deletado”.</dd></div>
+        </dl>
+        <div class="mt-6 rounded-[var(--radius-md)] border border-warning/40 bg-warning/10 p-4 text-text">
+          <strong class="font-semibold">Mudou de ideia?</strong> Entre na sua conta antes dessa data pra cancelar.
         </div>
+        <a href="/" class="btn btn-primary mt-8">Voltar ao site</a>
+      </div>
 
-        <!-- Success -->
-        <div id="verify-success" class="hidden">
-          <div class="w-16 h-16 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-          </div>
-          <h2 class="font-display text-xl font-bold mb-4">Exclusao Confirmada</h2>
-
-          <div class="text-left p-4 rounded-xl bg-bg-card text-sm space-y-3 mb-6">
-            <p class="text-text-secondary"><strong class="text-text-primary">Periodo de Graca:</strong> Voce tem ate <span id="grace-date" class="text-accent font-medium"></span> para cancelar.</p>
-            <p class="text-text-secondary"><strong class="text-text-primary">Exclusao Permanente:</strong> Apos 30 dias, seus dados serao deletados.</p>
-            <p class="text-text-secondary"><strong class="text-text-primary">Dados Preservados:</strong> Historico de batalhas ficara como "Usuario Deletado".</p>
-          </div>
-
-          <div class="p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-xs text-left mb-6">
-            <strong>Importante:</strong> Se mudar de ideia, faca login na sua conta antes da data de graca para cancelar.
-          </div>
-
-          <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent to-accent-secondary text-white font-medium text-sm">
-            Voltar ao site
-          </a>
-        </div>
-
-        <!-- Error -->
-        <div id="verify-error" class="hidden">
-          <div class="w-16 h-16 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-            </svg>
-          </div>
-          <h2 class="font-display text-xl font-bold mb-2">Erro na verificacao</h2>
-          <p id="verify-error-msg" class="text-text-secondary text-sm mb-4"></p>
-
-          <div class="text-left p-4 rounded-xl bg-bg-card text-xs text-text-muted space-y-1 mb-6">
-            <p>Possiveis motivos:</p>
-            <ul class="list-disc list-inside ml-2">
-              <li>Token expirado (valido por 7 dias)</li>
-              <li>Email nao corresponde a solicitacao</li>
-              <li>Solicitacao ja processada</li>
-            </ul>
-          </div>
-
-          <div class="flex gap-3 justify-center">
-            <a href="/" class="px-6 py-3 rounded-xl bg-bg-card text-text-primary text-sm font-medium hover:bg-bg-card-hover transition-colors">Voltar ao site</a>
-            <a href="/data-deletion" class="px-6 py-3 rounded-xl bg-gradient-to-r from-accent to-accent-secondary text-white text-sm font-medium">Tentar novamente</a>
-          </div>
+      <div id="verify-error" class="mt-10 hidden">
+        <h2 class="text-3xl">Não deu pra confirmar</h2>
+        <p id="verify-error-msg" class="mt-3 text-text-2" role="alert"></p>
+        <p class="mt-6 font-semibold">Motivos comuns</p>
+        <ul class="mt-2 space-y-1 text-text-2">
+          <li>O link expirou (vale por 7 dias)</li>
+          <li>O e-mail não é o mesmo da solicitação</li>
+          <li>A solicitação já foi processada</li>
+        </ul>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="/data-deletion" class="btn btn-primary">Tentar de novo</a>
+          <a href="/" class="btn btn-ghost">Voltar ao site</a>
         </div>
       </div>
     </div>
@@ -89,7 +65,7 @@ import Footer from '../../components/Footer.astro';
   async function verify() {
     if (!token || !email) {
       loadingDiv.classList.add('hidden');
-      errorMsg.textContent = 'Token ou email ausente na URL.';
+      errorMsg.textContent = 'O link está incompleto: faltam o token ou o e-mail.';
       errorDiv.classList.remove('hidden');
       return;
     }
@@ -104,15 +80,15 @@ import Footer from '../../components/Footer.astro';
         graceDate.textContent = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
         successDiv.classList.remove('hidden');
       } else if (res.status === 400) {
-        errorMsg.textContent = 'Solicitacao ja processada ou cancelada.';
+        errorMsg.textContent = 'Essa solicitação já foi processada ou cancelada.';
         errorDiv.classList.remove('hidden');
       } else {
-        errorMsg.textContent = data.message || 'Erro ao verificar.';
+        errorMsg.textContent = data.message || 'Não deu pra verificar.';
         errorDiv.classList.remove('hidden');
       }
     } catch {
       loadingDiv.classList.add('hidden');
-      errorMsg.textContent = 'Erro de conexao. Tente novamente.';
+      errorMsg.textContent = 'Sem conexão com o servidor. Tente de novo.';
       errorDiv.classList.remove('hidden');
     }
   }

@@ -1,140 +1,127 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import LegalShell from '../components/LegalShell.astro';
 ---
 
-<Layout title="Politica de Privacidade — RapTrak" description="Politica de Privacidade do RapTrak. Saiba como coletamos, usamos e protegemos seus dados.">
-  <Header />
+<LegalShell
+  title="Política de Privacidade"
+  pageTitle="Política de Privacidade · RapTrak"
+  description="Política de Privacidade do RapTrak. Saiba como coletamos, usamos e protegemos seus dados."
+  meta={['Última atualização: 13 de novembro de 2025']}
+>
+  <section>
+    <h2>1. Introdução</h2>
+    <p>O RapTrak é um aplicativo dedicado a conectar a comunidade de batalhas de rap no Brasil. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais.</p>
+    <p>Ao usar nosso aplicativo, você concorda com os termos desta política.</p>
+  </section>
 
-  <main class="pt-24 pb-16">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <a href="/" class="text-accent text-sm hover:underline">&larr; Voltar ao inicio</a>
-        <h1 class="font-display text-3xl sm:text-4xl font-bold mt-4 mb-2">Politica de Privacidade</h1>
-        <p class="text-text-muted text-sm">Ultima atualizacao: 13 de novembro de 2025</p>
-      </div>
+  <section>
+    <h2>2. Dados que coletamos</h2>
 
-      <article class="prose prose-invert max-w-none space-y-8 text-text-secondary text-sm leading-relaxed">
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">1. Introducao</h2>
-          <p>O RapTrak e um aplicativo dedicado a conectar a comunidade de batalhas de rap no Brasil. Esta Politica de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informacoes pessoais.</p>
-          <p>Ao usar nosso aplicativo, voce concorda com os termos desta politica.</p>
-        </section>
+    <h3>2.1 Dados de cadastro</h3>
+    <p>Quando você cria uma conta, coletamos:</p>
+    <ul>
+      <li><strong>Nome completo</strong></li>
+      <li><strong>E-mail</strong></li>
+      <li><strong>Senha</strong> (armazenada com criptografia bcrypt)</li>
+      <li><strong>CPF</strong> (para verificação de identidade)</li>
+      <li><strong>Data de nascimento</strong> (para verificar a idade mínima de 14 anos)</li>
+      <li><strong>Nome artístico</strong> (opcional)</li>
+      <li><strong>Avatar/foto de perfil</strong> (opcional)</li>
+      <li><strong>Tipos de usuário</strong> (comum, rapper, administrador de local, beatmaker)</li>
+      <li><strong>Cidade</strong> (opcional)</li>
+      <li><strong>Biografia</strong> (opcional)</li>
+      <li><strong>Redes sociais</strong> (opcional)</li>
+    </ul>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">2. Dados que Coletamos</h2>
+    <h3>2.2 Login com Google</h3>
+    <p>Se você optar por fazer login com sua conta Google, coletamos:</p>
+    <ul>
+      <li><strong>E-mail</strong> da sua conta Google</li>
+      <li><strong>Nome</strong> cadastrado no Google</li>
+      <li><strong>Foto de perfil</strong> do Google</li>
+    </ul>
+    <p><strong>Importante:</strong> quando você usa o Google Sign-In, suas credenciais do Google nunca são compartilhadas conosco. Recebemos apenas um token de autenticação validado pelo Google.</p>
 
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">2.1 Dados de Cadastro</h3>
-          <p>Quando voce cria uma conta, coletamos:</p>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li><strong class="text-text-primary">Nome completo</strong></li>
-            <li><strong class="text-text-primary">E-mail</strong></li>
-            <li><strong class="text-text-primary">Senha</strong> (armazenada com criptografia bcrypt)</li>
-            <li><strong class="text-text-primary">CPF</strong> (para verificacao de identidade)</li>
-            <li><strong class="text-text-primary">Data de nascimento</strong> (para verificar idade minima de 14 anos)</li>
-            <li><strong class="text-text-primary">Nome artistico</strong> (opcional)</li>
-            <li><strong class="text-text-primary">Avatar/foto de perfil</strong> (opcional)</li>
-            <li><strong class="text-text-primary">Tipos de usuario</strong> (comum, rapper, administrador de local, beatmaker)</li>
-            <li><strong class="text-text-primary">Cidade</strong> (opcional)</li>
-            <li><strong class="text-text-primary">Biografia</strong> (opcional)</li>
-            <li><strong class="text-text-primary">Redes sociais</strong> (opcional)</li>
-          </ul>
+    <h3>2.3 Dados de localização</h3>
+    <p>Coletamos dados de localização <strong>apenas quando você usa recursos específicos</strong>: busca de batalhas próximas, visualização no mapa e criação de endereços. A localização não é armazenada permanentemente.</p>
 
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">2.2 Login com Google</h3>
-          <p>Se voce optar por fazer login com sua conta Google, coletamos:</p>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li><strong class="text-text-primary">E-mail</strong> da sua conta Google</li>
-            <li><strong class="text-text-primary">Nome</strong> cadastrado no Google</li>
-            <li><strong class="text-text-primary">Foto de perfil</strong> do Google</li>
-          </ul>
-          <p class="mt-2"><strong class="text-text-primary">Importante:</strong> Quando voce usa o Google Sign-In, suas credenciais do Google nunca sao compartilhadas conosco. Recebemos apenas um token de autenticacao validado pelo Google.</p>
+    <h3>2.4 Dados de atividade</h3>
+    <ul>
+      <li>Batalhas que você cria ou descobre</li>
+      <li>Troféus que você recebe</li>
+      <li>Solicitações de propriedade de batalhas</li>
+      <li>Curtidas em batalhas</li>
+      <li>Estatísticas de participação</li>
+    </ul>
+  </section>
 
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">2.3 Dados de Localizacao</h3>
-          <p>Coletamos dados de localizacao <strong class="text-text-primary">apenas quando voce usa recursos especificos</strong>: busca de batalhas proximas, visualizacao no mapa, e criacao de enderecos. A localizacao nao e armazenada permanentemente.</p>
+  <section>
+    <h2>3. Como usamos seus dados</h2>
+    <ul>
+      <li>Autenticar sua identidade e gerenciar sua conta</li>
+      <li>Exibir batalhas próximas à sua localização</li>
+      <li>Conectar você com outras batalhas e usuários</li>
+      <li>Atribuir troféus e reconhecimentos</li>
+      <li>Melhorar a segurança e prevenir fraudes</li>
+      <li>Analisar e melhorar nossos serviços</li>
+      <li>Cumprir obrigações legais</li>
+    </ul>
+  </section>
 
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">2.4 Dados de Atividade</h3>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li>Batalhas que voce cria ou descobre</li>
-            <li>Trofeus que voce recebe</li>
-            <li>Solicitacoes de propriedade de batalhas</li>
-            <li>Curtidas em batalhas</li>
-            <li>Estatisticas de participacao</li>
-          </ul>
-        </section>
+  <section>
+    <h2>4. Compartilhamento de dados</h2>
+    <h3>Informações públicas</h3>
+    <p>Nome artístico, avatar, biografia, cidade, troféus e estatísticas são visíveis para outros usuários.</p>
+    <h3>Informações privadas</h3>
+    <p>Nunca compartilhamos publicamente: CPF, data de nascimento, e-mail, senha ou localização exata.</p>
+    <h3>Serviços de terceiros</h3>
+    <p>Utilizamos Google Sign-In, Google Maps API e provedores de hospedagem. <strong>Não vendemos nem alugamos seus dados pessoais para terceiros.</strong></p>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">3. Como Usamos Seus Dados</h2>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li>Autenticar sua identidade e gerenciar sua conta</li>
-            <li>Exibir batalhas proximas a sua localizacao</li>
-            <li>Conectar voce com outras batalhas e usuarios</li>
-            <li>Atribuir trofeus e reconhecimentos</li>
-            <li>Melhorar a seguranca e prevenir fraudes</li>
-            <li>Analisar e melhorar nossos servicos</li>
-            <li>Cumprir obrigacoes legais</li>
-          </ul>
-        </section>
+  <section>
+    <h2>5. Segurança dos dados</h2>
+    <ul>
+      <li>Senhas criptografadas com bcrypt</li>
+      <li>Tokens JWT com expiração de 24 horas</li>
+      <li>Conexões HTTPS</li>
+      <li>Banco de dados PostgreSQL com controles de acesso</li>
+      <li>Validação de dados em todas as entradas</li>
+    </ul>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">4. Compartilhamento de Dados</h2>
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">Informacoes Publicas</h3>
-          <p>Nome artistico, avatar, biografia, cidade, trofeus e estatisticas sao visiveis para outros usuarios.</p>
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">Informacoes Privadas</h3>
-          <p>Nunca compartilhamos publicamente: CPF, data de nascimento, e-mail, senha ou localizacao exata.</p>
-          <h3 class="font-display text-base font-semibold text-text-primary mb-2 mt-4">Servicos de Terceiros</h3>
-          <p>Utilizamos Google Sign-In, Google Maps API e provedores de hospedagem. <strong class="text-text-primary">Nao vendemos ou alugamos seus dados pessoais para terceiros.</strong></p>
-        </section>
+  <section>
+    <h2>6. Seus direitos (LGPD)</h2>
+    <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a:</p>
+    <ul>
+      <li>Confirmar a existência de tratamento dos seus dados</li>
+      <li>Acessar seus dados pessoais</li>
+      <li>Corrigir dados incompletos ou desatualizados</li>
+      <li>Solicitar anonimização, bloqueio ou eliminação de dados</li>
+      <li>Solicitar a portabilidade dos seus dados</li>
+      <li>Revogar o consentimento a qualquer momento</li>
+      <li>Excluir sua conta e todos os dados associados</li>
+    </ul>
+    <p>Para exercer seus direitos: <a href="mailto:lgpd@raptrak.me">lgpd@raptrak.me</a></p>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">5. Seguranca dos Dados</h2>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li>Senhas criptografadas com bcrypt</li>
-            <li>Tokens JWT com expiracao de 24 horas</li>
-            <li>Conexoes HTTPS</li>
-            <li>Banco de dados PostgreSQL com controles de acesso</li>
-            <li>Validacao de dados em todas as entradas</li>
-          </ul>
-        </section>
+  <section>
+    <h2>7. Exclusão de conta</h2>
+    <p>Você pode excluir sua conta a qualquer momento pelo app ou pela <a href="/data-deletion">página de exclusão de dados</a>. Seus dados pessoais são removidos permanentemente após 30 dias.</p>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">6. Seus Direitos (LGPD)</h2>
-          <p>De acordo com a Lei Geral de Protecao de Dados (LGPD), voce tem direito a:</p>
-          <ul class="list-disc list-inside space-y-1 ml-2">
-            <li>Confirmar a existencia de tratamento dos seus dados</li>
-            <li>Acessar seus dados pessoais</li>
-            <li>Corrigir dados incompletos ou desatualizados</li>
-            <li>Solicitar anonimizacao, bloqueio ou eliminacao de dados</li>
-            <li>Solicitar portabilidade dos seus dados</li>
-            <li>Revogar consentimento a qualquer momento</li>
-            <li>Excluir sua conta e todos os dados associados</li>
-          </ul>
-          <p class="mt-2">Para exercer seus direitos: <a href="mailto:lgpd@raptrak.me" class="text-accent hover:underline">lgpd@raptrak.me</a></p>
-        </section>
+  <section>
+    <h2>8. Menores de idade</h2>
+    <p>O RapTrak exige idade mínima de <strong>14 anos</strong>. Contas de menores serão desativadas e os dados, excluídos.</p>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">7. Exclusao de Conta</h2>
-          <p>Voce pode excluir sua conta a qualquer momento pelo app ou pela <a href="/data-deletion" class="text-accent hover:underline">pagina de exclusao de dados</a>. Seus dados pessoais sao removidos permanentemente apos 30 dias.</p>
-        </section>
+  <section>
+    <h2>9. Transferência internacional</h2>
+    <p>Seus dados podem ser armazenados em servidores fora do Brasil, em conformidade com a LGPD (Art. 33), com garantias contratuais e certificações de segurança.</p>
+  </section>
 
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">8. Menores de Idade</h2>
-          <p>O RapTrak exige idade minima de <strong class="text-text-primary">14 anos</strong>. Contas de menores serao desativadas e os dados excluidos.</p>
-        </section>
-
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">9. Transferencia Internacional</h2>
-          <p>Seus dados podem ser armazenados em servidores fora do Brasil, em conformidade com a LGPD (Art. 33), com garantias contratuais e certificacoes de seguranca.</p>
-        </section>
-
-        <section>
-          <h2 class="font-display text-xl font-semibold text-text-primary mb-3">10. Contato</h2>
-          <p>Para questoes sobre privacidade: <a href="mailto:johkker@gmail.com" class="text-accent hover:underline">johkker@gmail.com</a></p>
-          <p>Autoridade Nacional de Protecao de Dados (ANPD): <a href="https://www.gov.br/anpd/pt-br" class="text-accent hover:underline" target="_blank" rel="noopener">gov.br/anpd</a></p>
-        </section>
-      </article>
-    </div>
-  </main>
-
-  <Footer />
-</Layout>
+  <section>
+    <h2>10. Contato</h2>
+    <p>Para questões sobre privacidade: <a href="mailto:johkker@gmail.com">johkker@gmail.com</a></p>
+    <p>Autoridade Nacional de Proteção de Dados (ANPD): <a href="https://www.gov.br/anpd/pt-br" target="_blank" rel="noopener">gov.br/anpd</a></p>
+  </section>
+</LegalShell>

@@ -1,0 +1,16 @@
+---
+// Marca "Marcador · Coroa" — mesmo traçado do app (mobile/src/components/brand/Logo.tsx).
+interface Props { size?: number; wordmark?: boolean; class?: string }
+const { size = 28, wordmark = true, class: cls = '' } = Astro.props;
+const MARK = 'M32 81 L10 43 L10 21 L20 11 L44 11 L54 21 L54 43 Z M18 38 L18 34 L21.5 18.5 L27.5 25 L32 15 L36.5 25 L42.5 18.5 L46 34 L46 38 Z';
+---
+<span class:list={['inline-flex items-center gap-2', cls]}>
+  <svg width={(size * 1.35 * 64) / 84} height={size * 1.35} viewBox="0 0 64 84" aria-hidden="true">
+    <path d={MARK} fill="var(--color-accent)" fill-rule="evenodd" />
+  </svg>
+  {wordmark && (
+    <span class="font-display font-extrabold uppercase leading-none tracking-wide" style={`font-size:${size}px`}>
+      RAP<span class="text-accent">TRAK</span>
+    </span>
+  )}
+</span>

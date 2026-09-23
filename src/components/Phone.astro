@@ -1,0 +1,8 @@
+---
+interface Props { src: string; alt: string; class?: string; eager?: boolean }
+const { src, alt, class: cls = '', eager = false } = Astro.props;
+---
+<figure class:list={['rounded-[2.2rem] border border-hairline bg-darkest p-2 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]', cls]}>
+  <img src={src} alt={alt} width="414" height="896" loading={eager ? 'eager' : 'lazy'} decoding="async"
+    class="block h-auto w-full rounded-[1.7rem]" />
+</figure>

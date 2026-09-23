@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props { title: string; pageTitle: string; description: string; meta?: string[] }
+const { title, pageTitle, description, meta = [] } = Astro.props;
+---
+
+<Layout title={pageTitle} description={description}>
+  <Header />
+  <main id="conteudo" class="wrap pt-14 pb-24 lg:pt-20">
+    <a href="/" class="inline-flex min-h-10 items-center text-sm text-text-2 hover:text-text">&larr; Voltar ao início</a>
+    <h1 class="display-lg mt-6 max-w-4xl">{title}</h1>
+    {meta.length > 0 && (
+      <div class="mono mt-5 space-y-1 text-sm text-muted">
+        {meta.map((m) => <p>{m}</p>)}
+      </div>
+    )}
+    <article class="legal mt-14 border-t border-hairline pt-12">
+      <slot />
+    </article>
+  </main>
+  <Footer />
+</Layout>

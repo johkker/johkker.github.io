@@ -6,7 +6,8 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Descubra, acompanhe e viva a cena das batalhas de rap no Brasil.' } = Astro.props;
+const { title, description = 'A cena da batalha, num lugar só. Ache batalhas de rima perto de você, acompanhe resultados, monte seu perfil de MC e colecione troféus.' } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -15,44 +16,29 @@ const { title, description = 'Descubra, acompanhe e viva a cena das batalhas de 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href={url} />
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://raptrak.me" />
+    <meta property="og:url" content={url} />
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:image" content="https://raptrak.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <title>{title}</title>
   </head>
-  <body class="noise-bg min-h-screen antialiased">
-    <div class="relative z-10">
-      <slot />
-    </div>
-
-    <script>
-      // Intersection Observer for scroll animations
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
-
-      document.querySelectorAll('[data-animate]').forEach((el) => {
-        observer.observe(el);
-      });
-    </script>
+  <body class="min-h-screen">
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-white">Pular para o conteúdo</a>
+    <slot />
   </body>
 </html>

@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Phone from '../components/Phone.astro';
+
+const APP = 'https://app.raptrak.me';
+
+const fatos = [
+  {
+    destaque: '4,6 milhões',
+    texto: 'de inscritos no canal da Batalha da Aldeia, com cerca de 150 mil pessoas assistindo a live semanal.',
+    fonte: { nome: 'Metrópoles', url: 'https://www.metropoles.com/entretenimento/batalha-da-aldeia-conheca-a-maior-disputa-de-rimas-da-america-latina' },
+  },
+  {
+    destaque: 'Virou e-sport',
+    texto: 'MIBR e Corinthians montaram times de MCs, e a Red Bull roda a FrancaMente, batalha de rima nacional.',
+    fonte: { nome: 'Terra', url: 'https://www.terra.com.br/visao-do-corre/role-de-quebrada/com-formacao-de-equipes-batalhas-de-rima-estao-virando-esporte,86ceaae6e01a23b8f287cbea8b9614bao9fb9zwb.html' },
+  },
+  {
+    destaque: 'Patrimônio',
+    texto: 'As batalhas de rima são patrimônio cultural imaterial do Paraná, pela Lei Estadual 21.519/2023.',
+    fonte: { nome: 'Lei 21.519/2023', url: 'https://leisestaduais.com.br/pr/lei-ordinaria-n-21519-2023-parana-dispoe-sobre-o-reconhecimento-das-batalhas-culturais-de-rima-enquanto-patrimonio-cultural-imaterial-no-estado-do-parana-e-da-outras-providencias' },
+  },
+];
+
+const ganhos = [
+  {
+    quem: 'Organizador',
+    titulo: 'Sua batalha no mapa',
+    itens: [
+      'Página oficial com agenda, fotos e redes',
+      'Resultado do dia publicado em 4 passos',
+      'Aviso de nova edição pra quem segue a batalha',
+      'Público de outras cidades chegando na sua roda',
+    ],
+  },
+  {
+    quem: 'MC',
+    titulo: 'Currículo que não some',
+    itens: [
+      'Vitórias e troféus registrados, em vez de perdidos no story',
+      'Ranking por cidade, estado e região',
+      'Perfil com link pra mandar pra organizador',
+      'Conexão com MCs e batalhas de outras cenas',
+    ],
+  },
+  {
+    quem: 'Público',
+    titulo: 'Nunca perde uma edição',
+    itens: [
+      'Batalhas perto de você, no mapa e na lista',
+      'Siga batalhas e MCs favoritos',
+      'Resultados e campeões de cada edição',
+      'Descubra a cena de outras cidades',
+    ],
+  },
+];
+
+const apoio = [
+  { t: 'Drops', d: 'Itens da marca entregues na roda, pros MCs e pro público.' },
+  { t: 'Descontos', d: 'Condições exclusivas pra quem é da comunidade RapTrak.' },
+  { t: 'Brindes', d: 'De vez em quando, em edições, campeonatos e datas especiais.' },
+  { t: 'Troféus', d: 'Melhor flow, melhor punchline, favorito do público… apresentados por quem apoia.' },
+];
+
+const vemAi = [
+  { t: 'Chaveamento', d: 'Campeonatos com eliminação simples, dupla ou por pontos, em 1v1, 2v2 e 3v3, com árvore pra acompanhar ao vivo.' },
+  { t: 'iPhone', d: 'O app no iOS, pra ninguém da roda ficar de fora. Até lá, tudo funciona pelo navegador.' },
+  { t: 'Eventos oficiais', d: 'Campeonatos RapTrak juntando as cenas de várias cidades, com os apoiadores.' },
+];
+
+const noMapa = ['Batalha do Jaco', 'Batalha da Menô', 'Batalha da Matriz', 'Batalha do Triplex', 'Batalha da Colmeia'];
+---
+
+<Layout
+  title="Pra cena · RapTrak"
+  description="Grátis pra quem faz a cena, sempre. O que o RapTrak faz por organizadores, MCs e público das batalhas de rima."
+>
+  <Header />
+
+  <main id="conteudo">
+    <!-- Hero -->
+    <section class="overflow-hidden">
+      <div class="wrap pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <h1 class="display-xl max-w-5xl">
+          <span class="reveal-line"><span>Grátis pra quem</span></span>
+          <span class="reveal-line"><span>faz a cena.</span></span>
+          <span class="reveal-line"><span><span class="underline decoration-accent decoration-[0.09em] underline-offset-[0.12em]">Sempre.</span></span></span>
+        </h1>
+        <div class="rise mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <p class="lede">O RapTrak nasceu pra dar à batalha de rima o lugar que ela merece: um lugar onde a agenda, os resultados e a história de cada MC não se perdem no story. Feito com a cena, não só pra ela.</p>
+          <div class="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <a href={APP} class="btn btn-primary">Cadastrar minha batalha</a>
+            <a href={APP} class="btn btn-ghost">Montar meu perfil</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A cena -->
+    <section class="border-t border-hairline">
+      <div class="wrap py-20 lg:py-28">
+        <div class="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <h2 class="display-lg">Gigante, viva e organizada no boca a boca</h2>
+          <p class="lede lg:pt-3">Mesmo assim, não existe um lugar único pra saber onde e quando rola a próxima batalha, ver o histórico de um MC ou dar visibilidade a quem organiza. Tudo se espalha em stories e grupos de WhatsApp.</p>
+        </div>
+        <ul class="mt-14 grid gap-x-12 md:grid-cols-3">
+          {fatos.map((f) => (
+            <li class="border-t border-hairline pt-6 pb-8">
+              <p class="font-display text-4xl font-extrabold uppercase leading-none">{f.destaque}</p>
+              <p class="mt-3 text-text-2">{f.texto}</p>
+              <a href={f.fonte.url} target="_blank" rel="noopener" class="mt-3 inline-flex min-h-10 items-center text-sm text-muted underline decoration-hairline underline-offset-4 hover:text-text">Fonte: {f.fonte.nome}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- O que cada um ganha -->
+    <section class="border-t border-hairline bg-surface">
+      <div class="wrap py-20 lg:py-28">
+        <h2 class="display-lg max-w-3xl">O que cada um ganha</h2>
+        <div class="mt-14 grid gap-14 lg:grid-cols-[1fr_0.42fr]">
+          <div class="grid gap-12 md:grid-cols-3 md:gap-8">
+            {ganhos.map((g) => (
+              <div>
+                <p class="mono text-sm text-accent-ink">{g.quem}</p>
+                <h3 class="mt-2 text-3xl">{g.titulo}</h3>
+                <ul class="mt-5 space-y-3">
+                  {g.itens.map((i) => (
+                    <li class="relative pl-5 text-text-2 before:absolute before:left-0 before:top-[0.8em] before:h-0.5 before:w-2.5 before:bg-accent">{i}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <Phone src="/img/app-batalha.jpeg" alt="Página da Batalha do Jaco no app, com o botão Gerenciar esta batalha para quem organiza" class="mx-auto w-full max-w-[17rem] rotate-2" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Apoiadores -->
+    <section class="bg-accent text-white">
+      <div class="wrap grid gap-12 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:py-28">
+        <div>
+          <h2 class="display-lg">Marca aqui chega somando, não interrompendo</h2>
+          <p class="mt-6 max-w-md text-lg text-white">Sem pop-up, sem banner, sem vídeo no meio. Os apoiadores do RapTrak aparecem fazendo alguma coisa pela cena. Batalhas e MCs não pagam nada.</p>
+        </div>
+        <dl class="divide-y divide-white/30 border-y border-white/30">
+          {apoio.map((a) => (
+            <div class="grid gap-1 py-6 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <dt class="font-display text-3xl font-extrabold uppercase leading-none">{a.t}</dt>
+              <dd class="text-lg text-white">{a.d}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <!-- O que vem por aí -->
+    <section>
+      <div class="wrap py-20 lg:py-28">
+        <div class="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <h2 class="display-lg">O que vem por aí</h2>
+          <p class="lede lg:pt-3">Três coisas em construção. E o que mais faz diferença agora é o <strong class="font-semibold text-text">organizador publicando o resultado de cada edição</strong>. É isso que faz o ranking e o histórico dos MCs ganharem vida.</p>
+        </div>
+        <ul class="mt-14 grid gap-x-12 md:grid-cols-3">
+          {vemAi.map((v) => (
+            <li class="border-t border-hairline pt-6 pb-8">
+              <h3 class="text-3xl">{v.t}</h3>
+              <p class="mt-3 text-text-2">{v.d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Curitiba -->
+    <section class="border-t border-hairline bg-surface">
+      <div class="wrap grid items-center gap-14 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
+        <div>
+          <h2 class="display-lg">Começando por onde a gente tá: Curitiba</h2>
+          <p class="lede mt-6">Curitiba e região já estão no mapa, e a ideia é crescer pelo Sul até chegar nas capitais. Cada batalha nova no mapa traz mais público, e mais público traz mais apoio pra cena.</p>
+          <p class="mono mt-10 text-sm text-muted">Já no mapa</p>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {noMapa.map((b) => <li class="chip">{b}</li>)}
+          </ul>
+          <p class="mt-10 text-lg">Sua batalha não tá aí? <a href={APP} class="font-semibold text-accent-ink underline underline-offset-4 hover:text-text">Cadastre em 4 passos.</a></p>
+        </div>
+        <Phone src="/img/app-descobrir.jpeg" alt="Lista de batalhas no app: Batalha do Jaco, da Menô, da Matriz, do Triplex e da Colmeia" class="mx-auto w-full max-w-[17rem] -rotate-2" />
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="border-t border-hairline">
+      <div class="wrap py-20 lg:py-28">
+        <h2 class="display-xl max-w-4xl">Bora colocar a cena no mapa?</h2>
+        <div class="mt-14 grid gap-10 md:grid-cols-3">
+          <div class="flex flex-col items-start border-t border-hairline pt-6">
+            <h3 class="text-2xl">Organizador</h3>
+            <p class="mt-2 mb-5 text-text-2">Cadastre sua batalha e publique a próxima edição.</p>
+            <a href={APP} class="btn btn-primary mt-auto">Cadastrar batalha</a>
+          </div>
+          <div class="flex flex-col items-start border-t border-hairline pt-6">
+            <h3 class="text-2xl">MC</h3>
+            <p class="mt-2 mb-5 text-text-2">Monte seu perfil e leve seus troféus pra onde for.</p>
+            <a href={APP} class="btn btn-ghost mt-auto">Criar perfil</a>
+          </div>
+          <div class="flex flex-col items-start border-t border-hairline pt-6">
+            <h3 class="text-2xl">Público</h3>
+            <p class="mt-2 mb-5 text-text-2">Siga suas batalhas e nunca perca uma edição.</p>
+            <a href={APP} class="btn btn-ghost mt-auto">Achar batalhas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

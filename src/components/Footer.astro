@@ -1,51 +1,50 @@
 ---
+import Logo from './Logo.astro';
 const year = new Date().getFullYear();
+
+const cols = [
+  {
+    title: 'RapTrak',
+    links: [
+      { label: 'Abrir o app', href: 'https://app.raptrak.me' },
+      { label: 'Android (beta)', href: 'https://play.google.com/apps/testing/com.raptrak.app' },
+      { label: 'Pra cena', href: '/cena' },
+      { label: 'Perguntas frequentes', href: '/#faq' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Política de privacidade', href: '/privacy-policy' },
+      { label: 'Excluir meus dados', href: '/data-deletion' },
+      { label: 'Segurança infantil', href: '/child-safety' },
+      { label: 'lgpd@raptrak.me', href: 'mailto:lgpd@raptrak.me' },
+    ],
+  },
+];
 ---
 
-<footer class="border-t border-border bg-bg-secondary/50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Brand -->
-      <div>
-        <div class="flex items-center gap-2 mb-4">
-          <img src="/logo.png" alt="RapTrak" class="w-9 h-9" />
-          <span class="font-display font-bold text-lg">
-            Rap<span class="gradient-text">Trak</span>
-          </span>
-        </div>
-        <p class="text-text-muted text-sm leading-relaxed">
-          Conectando a comunidade de batalhas de rap no Brasil.
-        </p>
-      </div>
-
-      <!-- Links -->
-      <div>
-        <h4 class="font-display font-semibold text-sm text-text-primary mb-4 uppercase tracking-wider">Links</h4>
-        <ul class="space-y-2">
-          <li><a href="https://app.raptrak.me" class="text-sm text-text-muted hover:text-accent transition-colors">Web App</a></li>
-          <li><a href="/#beta" class="text-sm text-text-muted hover:text-accent transition-colors">Beta Android</a></li>
-          <li><a href="/#faq" class="text-sm text-text-muted hover:text-accent transition-colors">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div>
-        <h4 class="font-display font-semibold text-sm text-text-primary mb-4 uppercase tracking-wider">Legal</h4>
-        <ul class="space-y-2">
-          <li><a href="/privacy-policy" class="text-sm text-text-muted hover:text-accent transition-colors">Politica de Privacidade</a></li>
-          <li><a href="/data-deletion" class="text-sm text-text-muted hover:text-accent transition-colors">Excluir Dados</a></li>
-          <li><a href="mailto:lgpd@raptrak.me" class="text-sm text-text-muted hover:text-accent transition-colors">lgpd@raptrak.me</a></li>
-        </ul>
-      </div>
+<footer class="border-t border-hairline bg-darkest">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <Logo size={30} />
+      <p class="mt-5 max-w-xs text-text-2">A cena da batalha, num lugar só.</p>
     </div>
-
-    <div class="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-text-muted text-xs">
-        &copy; {year} RapTrak. Todos os direitos reservados.
-      </p>
-      <p class="text-text-muted text-xs">
-        Feito com amor pela cena do rap brasileiro
-      </p>
+    {cols.map((col) => (
+      <div>
+        <h2 class="font-display text-lg font-extrabold uppercase text-text">{col.title}</h2>
+        <ul class="mt-4 space-y-1">
+          {col.links.map((l) => (
+            <li><a href={l.href} class="inline-flex min-h-10 items-center text-text-2 transition-colors hover:text-text">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+  <div class="wrap">
+    <div class="flex flex-col gap-2 border-t border-hairline py-6 text-sm text-muted sm:flex-row sm:justify-between">
+      <p>&copy; {year} RapTrak</p>
+      <p>Feito com amor pela cena do rap brasileiro</p>
     </div>
   </div>
 </footer>
