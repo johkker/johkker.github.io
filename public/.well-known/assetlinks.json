@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.raptrak.app",
+      "sha256_cert_fingerprints": [
+        "75:BF:B3:55:53:51:D0:AC:3A:EC:40:96:C3:3A:7D:2D:28:85:A6:27:8C:0E:99:BC:B0:5B:4D:FE:A4:A4:82:BE"
+      ]
+    }
+  }
+]

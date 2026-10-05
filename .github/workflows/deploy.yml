@@ -25,9 +25,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v4
+      # upload-pages-artifact@v4 exclui arquivos ocultos sem opção de desligar,
+      # o que derruba o /.well-known/assetlinks.json. Mesmo tar, sem esse exclude.
+      - run: tar --dereference --hard-dereference --directory dist -cvf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .
+      - uses: actions/upload-artifact@v4
         with:
-          path: dist
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     needs: build
