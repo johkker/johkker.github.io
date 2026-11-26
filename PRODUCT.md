@@ -5,7 +5,7 @@
 brand
 
 ## Users
-The site is the public face of the RapTrak app (https://app.raptrak.me), for the rap battle scene in Brazil:
+The site is the public face of the RapTrak app (https://app.raptrak.com.br), for the rap battle scene in Brazil:
 - **Fan/spectator**: finds out what RapTrak is, where to use it, and how to follow battles near them. Arrives from Instagram, WhatsApp, or a battle flyer, mostly on a phone at night.
 - **MC**: wants to know whether their wins and trophies will be recorded and shareable.
 - **Organizer**: needs to be convinced that putting their battle on the map is free and worth it. The `/cena` page is written for them.
